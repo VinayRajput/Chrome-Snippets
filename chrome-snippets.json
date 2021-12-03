@@ -1,0 +1,185 @@
+[{
+		"name": "quickSort",
+		"content": "clear();\nvar ar = [33,23,15,11,17,9,1,7,0,4,2,6,3,1,6,18,8];\nfunction quickSort(arr){\n    let midPivot = Math.floor(arr.length/2);\n    for(var len=l=arr.length-1, i = 0; i<len; ){\n        console.log(parseInt(arr[l]) < parseInt(arr[i]));\n\n        if(parseInt(arr[l]) < parseInt(arr[i])){\n            arr[i] = arr[i] - arr[l];\n            arr[l] = arr[l] + arr[i];\n            arr[i] = arr[l] - arr[i];\n            console.log('i',i,'l',l);\n            console.log(arr[l]+' < '+arr[i]);\n            console.log('array',arr);\n        }\n        i++;l--;\n    }\n    if(arr.length>2){\n        let left = arr.splice(0, midPivot);\n        let right = arr;\n        return quickMerge(left, right);\n    }\n    return arr;\n    //return quickMerge(arr.splice(0, midPivot), arr.splice(midPivot));\n}\n\nfunction quickMerge(l, r){\n    let lft = (l.length>1) ? quickSort(l) : l;\n    let rght = (r.length>1) ? quickSort(r) :r;\n    return lft.concat(rght);\n}\nlet a = quickSort(ar);\n//console.log(a);\n"
+	},
+	{
+		"name": "bubbleSort",
+		"content": "var ar = [3,23,5,6,7,9,1,7,0];\n//ar.reverse();\n\nfunction bubbleSort(a){\n    var arr = a;\n    for(var i=0, count=0, len=arr.length; i<len; i++){\n       for(var j=i+1; j<len; j++){\n        if(arr[i] > arr[j]){\n            arr[i] = arr[i]-arr[j];\n            arr[j] = arr[j] + arr[i];\n            arr[i] = arr[j] - arr[i];   \n            count++;\n        }\n       }\n    }\nconsole.log(arr);\nconsole.log(\"Times :\", count);\n}\n\nbubbleSort(ar);\n"
+	},
+	{
+		"name": "InsertionSort",
+		"content": "clear();\nvar ar=[3,23,5,6,7,9,1,7,0];\n//ar.reverse();\nfunction insertionSort (a){\n    var arr=a;\n    var count=0;\n\n    for(var i=0,len=arr.length, l=len-1; i<len/2; i++, l--){\n        if(arr[i] > arr[l]){\n            arr[i] = arr[i] - arr[l];\n            arr[l] = arr[l] + arr[i];\n            arr[i] = arr[l] - arr[i];\n            count++\n        }\n    }\n    console.log(arr);\n    for(var i=0; i<len; i++){\n        for (var j=i+1; j<len; j++){\n            if(arr[i] > arr[j]){\n                arr[i] = arr[i] - arr[j];\n                arr[j] = arr[j] + arr[i];\n                arr[i] = arr[j] - arr[i];\n                count++\n            }\n        }\n    }\n    console.log(arr);\n    console.log(\"Times: \",count);\n}\n\ninsertionSort(ar);\n\n //# sourceURL=snippet:///InsertionSort"
+	},
+	{
+		"name": "mergeSort",
+		"content": "var ar = [33,23,15,11,7,9,1,7,0,4,2,6,3,1,6,8,8];\nfunction mergeSort(arr){\n    let midPoint = Math.floor(arr.length/2);\n    let left = arr.slice(0,midPoint);\n    let right = arr.slice(midPoint);\n\n    if(arr.length<2){\n        return arr;\n    }\n    console.log('called mergesort',left, right)\n    merged=merge(mergeSort(left),mergeSort(right));\n    console.log('returned merged',merged);\n    return merged;\n}\n\nfunction merge(left, right){\n    let lLen = left.length, rLen = right.length, lIndex=0, rIndex=0, result=[];\n    while(rIndex < rLen && lIndex < lLen){\n        if(left[lIndex] > right[rIndex]){\n            result.push(right[rIndex++]);\n        } else{\n            result.push(left[lIndex++]);\n        }       \n    }\n\n    result=result.concat(left.slice(lIndex)).concat(right.slice(rIndex));\n    //console.log('merge',result);\n    return result;\n}\n\nclear();\nmergeSort(ar);\n\n\n"
+	},
+	{
+		"name": "ES7-Oops-Constructor Example",
+		"content": "function Human(name, age, gender){\n   this.name = name;\n   this.info = {\n       age : age,\n       gender : gender\n   }\n   this.getName = function(){\n       return this.name;\n   }\n   this.getAll = function(){\n       return {name:this.name, age:this.info.age, gender:this.info.gender};\n   }\n}\n\nhmm = new Human('Vinay',39,'Male');\nconsole.log(hmm);\nconsole.log(hmm.getName());\n"
+	},
+	{
+		"name": "ES7-Oops-Simple object notation example",
+		"content": "human = {\n   name:\"Vinay\",\n   info:{ // object in object\n      age:\"39\",\n      gender:\"male\"\n   },\n   getName:function(){ //object method\n      return this.name\n   },\n   getFull:function(){ //object method\n      return {name:this.name, age:this.info.age, gender:this.info.gender}\n   }\n}\n\nconsole.log(human.getName());\nconsole.log(human.getFull());\n"
+	},
+	{
+		"name": "ES7-Object.create-via-object,auto-handle-null-value",
+		"content": "human = {\n   name:\"Vinay\",\n   info:{ // object in object\n      age:\"39\",\n      gender:\"male\"\n   },\n   getName:function(){ //object method\n      return this.name\n   },\n   getFull:function(){ //object method\n      return {name:this.name, age:this.info.age, gender:this.info.gender}\n   },\n   getAge : function(){\n       return this.info.age;\n   }\n}\n\nHuman = Object.create(human);\nconsole.log(Human.name);\nconsole.log(Human.getAge());"
+	},
+	{
+		"name": "ES7-Class",
+		"content": "\nclass Human {\n    constructor(name,age,gender){\n        this.name = name;\n        this.age = age;\n        this.gender = gender;\n    }\n\n    getDetails(){\n        return {name:this.name, age:this.age, gender:this.gender}\n    }\n}\n\nVinay = new Human('Vinay',39, 'male');\n"
+	},
+	{
+		"name": "setInterval",
+		"content": "\nsetInterval(function(){\n    var date = new Date();\n    var timestamp = date.getTime();\n    console.log(timestamp);    \n},100)"
+	},
+	{
+		"name": "Anagram",
+		"content": "function validAnagram(str1, str2){\n    // check if length of both string is same\n    if(str1.length !== str2.length) { return false}\n    \n    let strr1 = {};\n    let strr2 = {};\n    \n    // convert 1st string to object keys\n    for(let i=0; i< str1.length; i++){\n        let char =str1.charAt(i);\n        strr1[char] = (strr1[char] || 0) +1;\n        char =str2.charAt(i);\n        strr2[char] = (strr2[char] || 0) +1;\n    }\n    \n    // check 1st object keys in 2nd object\n    for(let key in strr1) {\n        if(strr1[key] !== strr2[key]) {\n            return false;\n            // return false if not any\n        }\n    }\n    return true;\n        \n    // return true, if execution reaches here that means all is fine and string 2 is anagram of string 1\n}\n\nvalidAnagram('aaz','zaa');\n"
+	},
+	{
+		"name": "Anagram2",
+		"content": "function validateAnagram(first, second){\n    if(first.length !== second.length){\n        return false\n    };\n\n    let lookup = {};\n\n    for(let i=0; i<first.length; i++){\n        char = first[i];\n        lookup[char] = (lookup[char] || 0) +1;\n    }\n\n    for(let i=0; i<second.length; i++){\n        char = second[i];\n        if(!lookup[char]) { return false };\n        lookup[char]--;\n    }\n    return true;\n}"
+	},
+	{
+		"name": "countUniqueValue1",
+		"content": "function countUniqueValues(a){\n    if(a.length===0){\n        return 0;\n    }\n    let obj = {};\n    let unique=[];\n    for(let el in a){\n        let val = a[el];\n        obj[val] = (obj[val] || 0) +1;\n    }\n    return Object.keys(obj).length;\n}\n\nlet arr = [1,1,1,1,4,2,5,2,3,56,3,7];\n\ncountUniqueValues(arr)"
+	},
+	{
+		"name": "countUniqueValues",
+		"content": "function countUniqueValues(ar){\n    if(ar.length===0)\n        return 0;\n        \n    let i=0;\n    let pointer=1;\n    while(pointer<ar.length){\n        if(ar[i] !== ar[pointer])\n        {\n            i++;\n            ar[i]=ar[pointer];\n        }\n        pointer++;\n    }\n    console.log(ar);\n    return (i+1);\n}\n\nlet arr = [1,1,1,1,2,2,3,3,4,5,7,56];\n\ncountUniqueValues(arr)"
+	},
+	{
+		"name": "countUniqueValues-2-pointer",
+		"content": ""
+	},
+	{
+		"name": "sameFrequency",
+		"content": "function sameFrequency(a,b){\n  // convert number to string\n  a = a.toString();\n  b = b.toString();\n  \n  // if a and b size is different return false\n  if(a.length != b.length) return false;\n  \n  //split to array\n  a = a.split(\"\");\n  b = b.split(\"\");\n  \n  //convert array to object\n  let len = a.length;\n  let aObj = {};\n  let bObj = {};\n  \n  for(let i=0; i<len; i++){\n      let char = a[i];\n      aObj[char] = (aObj[char] || 0) +1;\n      \n      char = b[i];\n      bObj[char] = (bObj[char] || 0) +1;\n  }\n  \n  //compare object\n  for(let k=0; k<len; k++){\n    if(aObj[k] !== bObj[k]) return false;\n  }\n  \n  //return result\n  return true;\n}\n\nsameFrequency(281,182);"
+	},
+	{
+		"name": "areTheyDuplicates",
+		"content": "function areThereDuplicates() {\n  let args = [].slice.call(arguments);\n  let argObj = {};\n  let len = args.length;\n  for( let i=0;i<len; i++ ){\n    let char=args[i];\n    argObj[char] = (argObj[char] || 0) +1;\n  }\n  \n  let keys = Object.keys(argObj);\n  for( let key of keys ){\n    if(argObj[key]>1) return true\n  }\n  return false;\n  \n}\n\n\nareThereDuplicates(1,2,3,4,5);"
+	},
+	{
+		"name": "averagePair",
+		"content": "clear();\nfunction averagePair(){\n    //check length of arguments and array and .5 in expected result\n    let avg = arguments[1];\n    let arr = arguments[0];\n    let len = arr.length - 1;\n    \n    if(\n        arguments.length < 2 || \n        arguments[0].length < 2 || \n            (\n                avg.toString().indexOf('.') !=-1 && \n                +avg.toString().split('.')[1]!==5\n            )\n      )  return false;\n    // check difference between 0 index and last index\n    if((arr[len] + arr[0])/2 > avg) {\n        let mid = Math.floor(len/2);\n        // if difference is more then avg*2 then devide the array from between\n        // restart again from on array, possibly recursive\n        if((arr[0] + arr[mid])/2 < avg)\n            return averagePair(arr.splice(mid,len),avg);\n        else\n            return averagePair(arr.splice(mid),avg);\n    } else{\n        let j=len;\n        for(let i=0; i<len; i++){\n            if((arr[i]+arr[len])/2 === avg){\n                console.log(arr,true);\n                //return true;\n            }\n            /*else if((arr[i]+arr[len])/2 < avg)\n                return false;*/\n        }\n        console.log(arr,false);\n        //return false;\n    }\n    \n}\n// averagePair([1,2,3],2.5);\n averagePair([1,3,3,5,6,7,10,12,19],8);\n//averagePair([-1,0,3,4,5,6],4.1);\n//averagePair([],4);"
+	},
+	{
+		"name": "avgPair",
+		"content": "clear();\nfunction averagePair(){\n    //check length of arguments and array and .5 in expected result\n    let avg = arguments[1];\n    let arr = arguments[0];\n    let len = arr.length - 1;\n    \n    if(\n        arguments.length < 2 || \n        arguments[0].length < 2 || \n            (\n                avg.toString().indexOf('.') !=-1 && \n                +avg.toString().split('.')[1]!==5\n            )\n      )  return false;\n    // check difference between 0 index and last index\n    \n    let j=len;\n    //   i\n    //[1,3,3,5,6,7,10,12,19]\n    //                 l\n    for(let i=0; i < len;){\n        if((arr[i] + arr[len])/2 > avg) { \n            len--;\n        } else if((arr[i] + arr[len])/2 !== avg) \n        { \n            i++; \n            continue;\n        };\n\n        if((arr[i] + arr[len])/2 === avg){\n            //console.log(arr,true);\n            return true;\n        }\n    }\n    //console.log(arr,false);\n    return false;\n    \n    \n}\n//averagePair([1,2,3],2.5);\n averagePair([1,3,3,5,6,7,10,12,19],8);\n//averagePair([-1,0,3,4,5,6],4.1);\n//averagePair([],4);"
+	},
+	{
+		"name": "isSubsequence",
+		"content": "function isSubsequence() {\n  let str = arguments[0];\n  let findIn = arguments[1];\n  let len = findIn.length;\n  let matched = \"\";\n  for(let i=0,j=0; i<str.length && j<len;){\n      if(str[i] === findIn[j]){\n          matched+=str[i];\n          i++;\n          j++;\n      } else j++;\n  }\n  return (str === matched)\n}\n\n//isSubsequence('hello','hello world');\n//isSubsequence('sing','sting');\nisSubsequence('abc','abracadabra');\n//isSubsequence('abc','acb');"
+	},
+	{
+		"name": "maxSubarraySum",
+		"content": "clear()\nfunction maxSubarraySum(a,num){\n    let maxSum=0;\n    for(let i=0,j=num;i<a.length;i++){\n        if(i < num)\n            maxSum += a[i];\n        else{\n            newSum = maxSum + a[i] - a[i-num];\n            maxSum = Math.max(newSum,maxSum)\n        }\n    }\n    return maxSum;\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n// function maxSubarraySum(arr, r){\n//     if(arr.length<r) return null;\n//     let i=0;\n//     let max=0;\n//     let total=0;\n//     for(;i<r;i++){\n//         total += arr[i];\n//     }\n//     console.log(arr,`max:${max}`);\n\n//     for(;i<arr.length;i++){\n//         total = (total - arr[i-r]) + arr[i];\n        \n//         max = Math.max(max,total);\n//         console.log(`(${total} - ${arr[i-r]}) + ${arr[i]} = ${total}`,`max:${max}`);\n//     }\n//     return max\n// }\n\n//maxSubarraySum([-3,4,0,-2,6,-1],2); //5\nmaxSubarraySum([3,-2,1,-4,1,-1,4,-2,1],2); //5"
+	},
+	{
+		"name": "minSubArrayLen--naive",
+		"content": "clear();\nfunction minSubArrayLen(arr,r){\n    // check if array length is more then 1\n    let len = arr.length;\n    if(len === 0){ return 0; }\n    let total=0;\n    let i=len-1;\n    let found = 0;\n    // sort the array\n    if(len>2)\n        arr.sort((a,b)=> a - b);\n    // reverse array traverse addition to reach expected value\n    \n    for(; i>0; i--){\n        total += arr[i];\n        // break when reached value equal or more then 'r'\n        if(r <= total){\n            found = len-i;\n          break;  \n        } \n    }\n    //return arr.length - i\n    if(found !== 0){\n        return found;\n    } else {return 0}\n}\n\n//minSubArrayLen([2,3,1,2,4,3],7);\n//minSubArrayLen([2,1,6,5,4],9);\n//minSubArrayLen([3,1,7,11,2,9,8,21,62,33,19],52);\nminSubArrayLen([1,4,16,22,5,7,8,9,10],55);"
+	},
+	{
+		"name": "minSubArrayLen--naive-2",
+		"content": "clear();\nfunction minSubArrayLen(arr,r){\n    // check if array length is more then 1\n    let len = arr.length;\n    if(len === 0){ return 0; }\n    let total=0;\n    let i=0,l=0;\n    let found = 0;\n    let str=\"\";\n        for(;i<len; i++){\n            // add to total till total is not equal or greater then 'r'\n            if(total<r){\n                total += arr[i]; str += `${arr[i]},`;\n                if(total >= r){\n                    l=i;\n                    break;\n                }\n            }\n        }\n\n        for(;l>=0 && i<len;){\n          total -= arr[i-l];\n          if(total <= r && i < len-1) {\n            i++;\n            total += arr[i];\n          }\n          else{\n              if(total < r){\n                  return l+1;\n              }\n              l--;\n          }\n            \n        }\n    return l;\n}\n//minSubArrayLen([2,3,1,2,4,3],7);\n//minSubArrayLen([2,1,6,5,4],9);\n//minSubArrayLen([3,1,7,11,2,9,8,21,62,33,19],52);\n//minSubArrayLen([1,4,16,22,5,7,8,9,10],55);\n//minSubArrayLen([1,4,16,22,5,7,8,9,10],39);\nminSubArrayLen([4,3,3,8,1,2,3],11);"
+	},
+	{
+		"name": "minSubArrayLen",
+		"content": "clear();\nfunction minSubArrayLen(arr,r){\n    // check if array length is more then 1\n    let len = arr.length;\n    if(len === 0){ return 0; }\n    let total=0;\n    let i=0,l=0;\n    let found = 0;\n    let str=\"\";\n    let min=0;\n\n        for(;i<len; i++){\n            // add to total till total is not equal or greater then 'r'\n            if(total<r){\n                total += arr[i]; str += `${arr[i]},`;\n                if(total >= r){\n                    l=i;\n                    min=l;\n                    break;\n                }\n            }\n        }\n\n        for(;l>=0 && i<len;){\n          total -= arr[i-l];\n          if(total <= r && i < len-1) {\n            i++;\n            total += arr[i];\n            min = Math.min(min,l)\n          } else {\n              l--;\n          }\n\n            \n        }\n    return min;\n}\n//minSubArrayLen([2,3,1,2,4,3],7);\n//minSubArrayLen([2,1,6,5,4],9);\n//minSubArrayLen([3,1,7,11,2,9,8,21,62,33,19],52);\n//minSubArrayLen([1,4,16,22,5,7,8,9,10],55);\nminSubArrayLen([1,4,16,22,5,7,8,9,10],39);\n//minSubArrayLen([4,3,3,8,1,2,3],11);"
+	},
+	{
+		"name": "fibonacci-nth",
+		"content": "clear()\nfunction fib(nth){\n    let count = 1;\n    let prev = 1;\n    function helper(n){\n        //console.log(count,nth)\n        if(count === nth)\n            return prev;\n        let tmp = prev;\n        prev = n;\n        count++;   \n        helper( n + tmp);\n    }\n    helper(1);\n    return prev;\n}\n\nfunction fib(n){\n    if(n <=2) return 1;\n    return fib(n-1) + fib(n-2);\n}\n\nfib(28);"
+	},
+	{
+		"name": "Array.print",
+		"content": "//console.log(Array.prototype)\nArray.prototype.print = ()=> {\n    //console.log(this)\n    let result ='';\n    this.forEach(e => {\n        result+=`${elem},`;\n        console.log(result)\n    })\n}\n\n// Array.prototype.print = () =>{\n//     let arr = this;\n//     console.log(arr.join())\n// }\n\n\n[1,2].print();"
+	},
+	{
+		"name": "function-params-length",
+		"content": "function abc(a,b,c,[]){}\nconsole.log(abc.length)\n"
+	},
+	{
+		"name": "Xebia-Interview-ES6-custom-map-function",
+		"content": "// // Map protypte\n// function map(func){\n// \tlet arr = this;\n//       for(var i =0; i<arr.length; i++){\n//         arr[i] = func(arr[i])\n//       }\n//       return arr;\n// }\n\n// Array.prototype.map = map;\n\n// var double = [1,2].map(number => number*2);\n// console.log(double)\n\n\n\nlet map = (func)=>{\n\tlet arr = this;\n\tconsole.log(`this:`,this);\n\t  for(var i =0; i<arr.length; i++){\n\t\tarr[i] = func(arr[i])\n\t  }\n\t  return arr;\n}\n\nArray.prototype.map = map;\n\nvar arr = [1,2];\nvar double = arr.map(number => number*2);\n\nconsole.log(arr); // [1,2]\nconsole.log(double); // [2,4]\n\nObject.prototype.map=()=>{\n\tconsole.log(this.keys());\n}"
+	},
+	{
+		"name": "Xebia-Interview-ReactJSInterview",
+		"content": "var a = 10;\nfunction a(){\n\tconsole.log(a); // \n\tvar a = 20;\n}\nconsole.log(a)\na();\n\n"
+	},
+	{
+		"name": "Xebia-Interview-ReactJSInterview-",
+		"content": "import React from 'react';\nimport {useEffect, useState} from 'react';\n\nconst counter =()=>{\n  let [count,setCount] = useState(0);\n\n  useEffect(()=>{\n    let intervalId = setInterval(()=>{\n      count++\n      setCount(count);\n    },1000)\n\n    return () => {\n      return intervalId\n    }\n  },[])\n\n  return (\n    <h2>{count}</h2>\n  )\n}\nexport default counter;\n"
+	},
+	{
+		"name": "Xebia-Interview-ES6-Promise",
+		"content": "var p1 = new Promise(resolve => {\n  setTimeout(() => resolve(2), 5000);\n});\nvar p2 = new Promise(resolve => resolve(p1));\np2.then(val => console.log(val));"
+	},
+	{
+		"name": "closure in loop",
+		"content": "for(let i=0; i<10; i++){\n    console.log(i);\n    setTimeout(function(){\n        console.log(`i-:${i}`);\n    },0)\n}\nconsole.log(i)\n\n\n setTimeout(function(){\n        console.log(`i:${i}`);\n    },1000)\n    \nfor(var i=0; i<10; i++){\n    setTimeout(function(){\n        console.log(i);\n    })\n}\n"
+	},
+	{
+		"name": "Object Concept",
+		"content": "clear();\nlet livingBeing = {\n    soul:true,\n    canWalk:false,\n    canMove:true,\n    liveOnLand:true,\n    liveInWater:true,\n    act:[\"awake\",\"move\",\"aim\"]\n}\n\nlet mammals = {\n    legs:0,\n    mouth:1,\n    tongue:1,\n    eyes:2,\n    hand:0,\n    vegetarian:true,\n    canWalk:false,\n    canRun:false,\n    canSwim:true\n}\n\nlet animal = {\n    legs:4,\n    mouth:1,\n    tongue:1,\n    eyes:2,\n    hand:0,\n    vegetarian:true,\n    canWalk:true,\n    canRun:false,\n    act:[\"awake\",\"look\",\"observe\",\"aim\",\"move\"]\n}\n\nlet birds = {\n    canfly:true,\n    layEggs:true,\n    legs:2,\n    wings:2,\n    eyes:2,\n    tongue:1,\n    mouth:1,\n    act:[\"awake\",\"look\",\"observe\",\"aim\",\"jump\"],\n    fly:[\"awake\",\"look\",\"observe\",\"aim\",\"jump\",\"fly\"]\n}\n\nlet human = {\n    legs:2,\n    hand:2,\n    eyes:2,\n    mouth:1,\n    tongue:1,\n    canWalk:true,\n    canRun:false,\n    act:[\"awake\",\"look\",\"observe\",\"identify\",\"aim\",\"move\"],\n    run:[\"awake\",\"look\",\"observe\",\"identify\",\"aim\",\"move\",\"walk\",\"run\"],\n}\n\nlet Man = new function(){\n\n}()\n\n\n\nbirds.__proto__=livingBeing\nmammals.__proto__ = livingBeing\nanimal.__proto__ = mammals;\nhuman.__proto__ = mammals;\n\n\nlet Goofy={\n    name:\"Goofy\",\n    age:5,\n    says:function(){\n        console.log(\"woof!!\");\n    }\n}\nGoofy.__proto__=animal;\n\nlet Sumit = {\n    name:\"Sumit\",\n    says:function(){\n        console.log(\"Hello!\")\n    }\n}\nSumit.__proto__=human\n\nlet Chiri = {\n    name:\"Chiri\",\n    says:function(){\n        console.log(\"Chirp chirp!\")\n    }\n}\nChiri.__proto__=birds;\n\nconsole.log(Goofy,Sumit,Chiri);\n\n\n// Object.keys(Goofy)\n// for(let k in Goofy){\n//     console.log(k, Goofy[k]);\n// }\n\nGoofy.legs = Goofy.legs;\nObject.defineProperty(Goofy,\"age\",{enumerable:false});\n\n//Object.defineProperty(Goofy,\"legs\",{writable:true});\n\n//Goofy.legs=3;\nlet Pluto = JSON.parse(JSON.stringify(Goofy));\n\n//console.log(Pluto);\n\nPluto = Object.assign({},Goofy);\n//console.log(Pluto);\n\nObject.freeze(Pluto)\nPluto.some=\"abc\"\nconsole.log(\"Pluto\",Pluto)\n\n//console.log(JSON.stringify(Goofy))\n\n// console.log(Goofy)\n// //Sumit.act=Sumit.act;\n// //Object.defineProperty(Sumit,\"act\",{configurable:false,writable:false});\n// Sumit.act.push(\"run\");\n\n// for(var k in Sumit.act){\n//     Object.defineProperty(Sumit.act,k,{configurable:false,writable:false})\n// }\n\n// Sumit.act.forEach((k,v)=>{\n//     console.log(`${v}:${k}`)\n// })\n\n\n// console.log(Object.getOwnPropertyDescriptor(Sumit,\"act\"))\n\n// console.log(JSON.stringify(Sumit))\n// console.log(Sumit)\n\n\n\n"
+	},
+	{
+		"name": "flatMultidimensionArray",
+		"content": "clear()\nlet arr = [1,2,[4,8,[3,5,[3,[6,4]]]]];\n\nfunction flat(arr){\n    let ar=[];\n    function _handler(arrr){\n        for(let k in arrr){\n            if(Array.isArray(arrr[k])) {\n                 ar = ar.concat(flat(arrr[k]))\n             } else ar.push(arrr[k]);\n        }\n    }\n    _handler(arr);\n    return ar;\n}\n\nlet a = flat(arr);\nconsole.log(a);\n\n"
+	},
+	{
+		"name": "Prototype-n-constructor",
+		"content": "clear();\nfunction Product(title, price){\n    this.title = title;\n    this.price = price;\n}\n\nlet p1 = new Product(\"Pen\",100);\nlet p2 = new Product(\"Pencil\",200);\n\nconsole.log(p1.constructor === p2.constructor)\nconsole.log(Product === Product.prototype.constructor)\n\n"
+	},
+	{
+		"name": "countUniqueValuesSortedArray",
+		"content": "clear()\nlet ar = [1,2,3,4,4,4,7,7,12,13,14,15];\n\ncountUniqueValues = (ar)=>{\n    for(var j=1,i=0;j<ar.length;){\n        console.log(i+\":ar[i]:\"+ar[i],\",\"+j+\":ar[j]:\"+ar[j],);\n        if(ar[i]!==ar[j]){\n            i++\n            (j-i>1) ? (ar[i] = ar[j]) : '';\n            \n            i++;\n        } else \n            j++\n\n    }\n    console.log(ar)\n    return i;\n}\n\ncountUniqueValues(ar)\n//   i\n//[1,2,3,4,4,4,7,7,12,13,14];\n//     j"
+	},
+	{
+		"name": "Script snippet #42",
+		"content": "Array.prototype.print = function(){\n    let arr = this;\n    console.log(arr.join())\n}\n\n[1,2].print();"
+	},
+	{
+		"name": "Anagram3",
+		"content": ""
+	},
+	{
+		"name": "mergeTwoObjects",
+		"content": "var headCellsCustomization = [\n    {\n      \"id\": \"registerNumber\",\n      \"style\": {\n        \"paddingLeft\": \"1rem\"\n      }\n    },\n    {\n      \"id\": \"mediaCategory\",\n      \"sortable\": true\n    },\n    {\n      \"id\": \"blank\",\n      \"numeric\": false,\n      \"label\": \"\"\n    }\n  ];\n\nvar headCells= [\n    {\n      \"id\": \"registerNumber\",\n      \"numeric\": false,\n      \"label\": \"Register Number\"\n    },\n    {\n      \"id\": \"mediaCategory\",\n      \"numeric\": false,\n      \"label\": \"Media Category\"\n    },\n    {\n      \"id\": \"total\",\n      \"numeric\": true,\n      \"label\": \"Total\"\n    }\n  ];\n\nclear();\n\nlet mergeTwoObjects = (original,updates) => {\n\n  let idsIndex ={};\n  updates.map((cell,i)=>{\n      idsIndex[cell.id] = i;\n  });\n\n  let updated = original.map(cell=>{\n    let objectToMerge = updates[idsIndex[cell.id]];\n    delete idsIndex[cell.id]\n    return {...cell, ...objectToMerge};\n  })\n  \n  Object.values(idsIndex).map(val=>{\n    updated.push(updates[val]);\n  })\n  \n  return Object.assign(original, updated);\n  \n}\n\nmergeTwoObjects(headCells, headCellsCustomization);\n//JSON.stringify(mergeTwoObjects(headCells, headCellsCustomization));\n"
+	},
+	{
+		"name": "Script snippet #45",
+		"content": "JSON.merge = ()=>{\n   console.log('hello') \n}\n\nconsole.log(JSON.merge())\n"
+	},
+	{
+		"name": "Const-question",
+		"content": ""
+	},
+	{
+		"name": "Script snippet #47",
+		"content": "const newPromise = new Promise()\nnewPromise.resolve(() => {\n  console.log('resolve')  \n})\nnewPromise.reject(() => {\n    console.log('reject')\n})\n\nnewPromise.then((res) =>{\n    console.log(res)\n}).catch((err) =>{\n    console.log(err)\n})"
+	},
+	{
+		"name": "Script snippet #48",
+		"content": ""
+	},
+	{
+		"name": "ReactPhoneBook-Assessment",
+		"content": ""
+	},
+	{
+		"name": "frequencyPattern",
+		"content": "var input = [\n     \"Arora, Kriti\",\n     \"Sharma, Vishal\",\n     \"Gupta, Sushant\",\n     \"Sharma, Kriti\",\n     \"Sharma, Mukul\",\n     \"Arora, Sushant\",\n];\nclear()\nconst sorting = (a,b)=>{\n      if(a>b){\n          return -1;\n      } else if(a<b) {return 1; }\n      else{\n          return 0\n      }\n  }\nconst findMostCommon = (obj) =>{\n  \n  let lastNames ={};\n  let firstNames = {};\n  let finalObj = {};\n    for(let i=0;i<obj.length;i++){\n        const [last,first] = obj[i].split(\", \");\n        lastNames[last] = lastNames[last] ? lastNames[last]+1 : 1; \n        firstNames[first] = firstNames[first] ? firstNames[first]+1 : 1; \n  }\n\n  \n  Object.keys(lastNames).forEach(key=>{\n     if(!finalObj.lastname || finalObj.lastname.count < lastNames[key])\n      finalObj.lastname = {\n          name:key,\n          count:lastNames[key]\n      }\n  });\n  Object.keys(lastNames).forEach(key=>{\n     if(!finalObj.lastname || finalObj.lastname.count < lastNames[key])\n      finalObj.lastname = {\n          name:key,\n          count:lastNames[key]\n      }\n  });\n  //firstNames = lastNames.sort(sorting);\n  console.log(lastNames, firstNames, finalObj);\n  \n  \n  \n}\n\nvar common = findMostCommon(input);\nconsole.log(common);\n \n\n/*\n  Write a function at accepts an array of strings where each string is a\n  the format \"lastname, firstname\". Return an object with the most common\n  firstname and most common lastname. Include the count of each.\n  Example:\n    var input = [\n     \"Arora, Akshay\",\n     \"Sharma, Vishal\",\n     \"Gupta, Sushant\",\n     \"Sharma, Kriti\",\n     \"Sharma, Mukul\",\n     \"Arora, Sushant\",\n    ];\n \n   var common = findMostCommon(input);\n   console.log(common);\n \n   Output:\n      {\n       'lastname/*': {\n           'name': 'Sharma',\n           'count': 3\n       },\n       'firstname': {\n            'name': 'Sushant',\n            'count': 2\n       }\n      }\n */\n"
+	},
+	{
+		"name": "destructuring",
+		"content": "let obj = {id3:\"asfadfas\",someDescendent3:\"asdfads\",abc3:\"abc\", someArray3:[]};\n\nlet {someArray3, someDescendent3, id3} = obj;\n\nsomeArray3.push({abc:'abc'})\nsomeArray3.push({abc:'abc'})\nsomeArray3.push({abc:'abc'})\n\nid3=\"abcdd\";\nsomeDescendent3=\"dadfad\";\n\n\ndebugger;\n"
+	},
+	{
+		"name": "arrayDestructuring",
+		"content": "let abcd = [\"a\",\"b\",\"c\",[]];\n\nlet [a,b,c,someArray] = abcd;\n\na = \"ab\";\nb = \"bd\";\nc = \"de\";\n\nsomeArray.push({abc:'abc'});\nsomeArray.push({abc:'abc'});\nsomeArray.push({abc:'abc'});\n\nconsole.log(abcd);\ndebugger "
+	}
+]
